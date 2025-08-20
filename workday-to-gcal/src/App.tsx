@@ -1,14 +1,15 @@
 import './App.css';
+import Navbar from './components/Navbar.tsx';
+import Upload from './components/Upload.tsx';
+import Footer from './components/Footer.tsx';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Workday to Google Calendar Integration
-        </p>
-      </header>
-    </div>
+    <>
+      <Navbar />  
+      <Upload />
+      <Footer />
+    </>
   );
 }
 
