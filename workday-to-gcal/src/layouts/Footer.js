@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>&copy; 2024 Workday to Google Calendar Integration</p>
+      <p>&copy; 2025 Workday to Google Calendar Integration</p>
     </footer>
 );
 }

@@ -1,8 +1,8 @@
 const Upload = () => {
   return ( 
-    <div className="upload">
-      <h2>Upload Your Workday Data</h2>
-    </div> 
+    <section className="upload" id="upload">
+      <h1>Upload Your Workday Data</h1>
+    </section> 
   );
 }
  

@@ -4,20 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { AuthProvider } from './contexts/AuthContext';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-const container = document.getElementById('root');
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-if (container) {
-  const root = ReactDOM.createRoot(container);
-  root.render(
-    <React.StrictMode>
-      <GoogleOAuthProvider clientId={clientId}>
+root.render(
+  <React.StrictMode>
+    <GoogleOAuthProvider clientId={clientId}>
+      <AuthProvider>
         <App />
-      </GoogleOAuthProvider>
-    </React.StrictMode>
-  );
-}
+      </AuthProvider>
+    </GoogleOAuthProvider>
+  </React.StrictMode>
+);
 
+// optional: measure performance
 reportWebVitals(console.log);

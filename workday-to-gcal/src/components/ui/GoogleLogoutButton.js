@@ -1,17 +1,18 @@
 import React from 'react';
 import { googleLogout } from '@react-oauth/google';
+import Button from './Button';
 
 // Stateless presentational logout button
-const GoogleLogoutButton = ({ onLogoutSuccess, children = 'Logout', className }) => {
+const GoogleLogoutButton = ({ onLogoutSuccess, children = 'Logout' }) => {
   const handleClick = () => {
     try { googleLogout(); } catch (e) {}
     if (typeof onLogoutSuccess === 'function') onLogoutSuccess();
   };
 
   return (
-    <button type="button" onClick={handleClick} className={className}>
+    <Button onClick={handleClick} variant='outline'>
       {children}
-    </button>
+    </Button>
   );
 };
 
