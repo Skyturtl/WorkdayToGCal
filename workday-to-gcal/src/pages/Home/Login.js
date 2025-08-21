@@ -14,7 +14,6 @@ const Login = () => {
     ux_mode: 'popup',
     onSuccess: async (tokenResponse) => {
       setIsLoggedIn(true);
-      // save token to auth context for other components to use
       saveToken(tokenResponse);
       console.log(tokenResponse);
       try {

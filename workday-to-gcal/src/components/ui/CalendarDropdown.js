@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Simple presentational dropdown for calendars
 const CalendarDropdown = ({ items = [], selectedId = '', onChange, className }) => {
   return (
     <select

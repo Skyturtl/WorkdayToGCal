@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const saveToken = (tokenResp) => {
-    // tokenResp may be an object with access_token or a string
     setToken(tokenResp);
     setIsLoggedIn(!!tokenResp);
   };

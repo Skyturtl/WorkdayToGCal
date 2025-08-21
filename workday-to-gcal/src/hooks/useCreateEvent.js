@@ -2,8 +2,6 @@ import { useCallback, useState } from 'react';
 import { createEvent as apiCreateEvent } from '../utils/api';
 import { buildEventResource } from '../data/eventBuilder';
 
-// Hook to create a new event in a calendar
-// Usage: const { createEvent, creating, error, created } = useCreateEvent({ token })
 const useCreateEvent = ({ token } = {}) => {
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState(null);

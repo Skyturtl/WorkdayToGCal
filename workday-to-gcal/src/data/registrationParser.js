@@ -1,9 +1,4 @@
-// Parse an array of rows (as returned by xlsx.utils.sheet_to_json)
-// and return only courses with Registration Status === 'Registered'.
-// For each course return a simplified object:
-// { title, instructor, days, startTime, endTime, room, startDate, endDate }
-
-import { excelSerialToISO } from '../utils/date';
+import { excelSerialToISO, to24Hour, dayLabelToIndex } from '../utils/date';
 
 export function parseRegistrationJson(rows) {
 	if (!Array.isArray(rows)) return [];
@@ -23,14 +18,14 @@ export function parseRegistrationJson(rows) {
 			const timePart = parts[1] || '';
 			const roomPart = parts[2] || '';
 
-			const days = daysPart ? daysPart.split('/').map((d) => d.trim()).filter(Boolean) : [];
+			const days = daysPart ? String(daysPart).split(/[/,;|]+/).map((d) => d.trim()).filter(Boolean).map((d) => dayLabelToIndex(d)).filter((n)=>n>=0) : [];
 
 			let startTime = '';
 			let endTime = '';
 			if (timePart) {
 				const t = timePart.split('-').map((s) => s.trim());
-				startTime = t[0] || '';
-				endTime = t[1] || '';
+				startTime = to24Hour(t[0] || '');
+				endTime = to24Hour(t[1] || '');
 			}
 
 			const startDate = excelSerialToISO(r['Start Date'] ?? r.StartDate ?? r['StartDate']);

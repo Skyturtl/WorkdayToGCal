@@ -1,5 +1,3 @@
-// Helpers to build Google Calendar event resources from high-level inputs
-
 const pad = (n) => String(n).padStart(2, '0');
 const combineLocal = (dateStr, timeStr = '00:00') => {
   if (!dateStr) return undefined;
@@ -42,7 +40,6 @@ const formatUntil = (value) => {
 export function buildEventResource(opts) {
   if (!opts) return {};
   const tz = opts.timeZone || (Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC');
-  // Direct start/end take precedence
   let startDateTime, endDateTime;
   if (opts.start) {
     const s = opts.start instanceof Date ? opts.start.toISOString() : String(opts.start);
@@ -77,9 +74,7 @@ export function buildEventResource(opts) {
   return resource;
 }
 
-// Optional mapper from raw rows to builder options
 export function mapRowToEventOptions(row) {
-  // Adjust these keys to your spreadsheet headers
   return {
     title: row.Title || row.Summary || row.Event || row.title,
     description: row.Description || row.description,

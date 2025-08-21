@@ -1,8 +1,6 @@
 import React from 'react';
 
-// Presentational button component
-// Props: onClick, disabled, children, variant
-const Button = ({ onClick, disabled = false, children, variant = 'primary', style = {}, title }) => {
+const Button = ({ onClick, disabled = false, children, variant = 'primary', style = {}, title, ...rest }) => {
   const base = {
     padding: '8px 12px',
     borderRadius: 4,
@@ -10,6 +8,9 @@ const Button = ({ onClick, disabled = false, children, variant = 'primary', styl
     cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.6 : 1,
     fontWeight: 600,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   };
 
   const variants = {
@@ -18,7 +19,7 @@ const Button = ({ onClick, disabled = false, children, variant = 'primary', styl
   };
 
   return (
-    <button onClick={disabled ? undefined : onClick} disabled={disabled} style={{ ...base, ...variants[variant], ...style }} title={title}>
+    <button onClick={disabled ? undefined : onClick} disabled={disabled} style={{ ...base, ...variants[variant], ...style }} title={title} {...rest}>
       {children}
     </button>
   );

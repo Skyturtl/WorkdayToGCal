@@ -1,7 +1,5 @@
 import React from 'react';
 
-// Simple presentational text input
-// Props: value, onChange(value), placeholder, disabled
 const TextInput = ({ value, onChange, placeholder = '', disabled = false, style = {} }) => {
   return (
     <input

@@ -1,7 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
 
-// Loads gapi script and exposes an init function + ready flag.
-// Usage: const { ready, initClient, error } = useGapiClient({ apiKey, discoveryDocs })
 const useGapiClient = ({ apiKey, discoveryDocs = [] } = {}) => {
   const [ready, setReady] = useState(false);
   const [error, setError] = useState(null);
@@ -21,9 +19,7 @@ const useGapiClient = ({ apiKey, discoveryDocs = [] } = {}) => {
   }, [apiKey, discoveryDocs]);
 
   useEffect(() => {
-    // If gapi already present, don't re-inject
     if (window.gapi && window.gapi.client) {
-      // client might still need init
       initClient();
       return;
     }
@@ -45,7 +41,6 @@ const useGapiClient = ({ apiKey, discoveryDocs = [] } = {}) => {
     return () => {
       document.body.removeChild(script);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initClient]);
 
   return { ready, error };

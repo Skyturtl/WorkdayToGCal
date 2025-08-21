@@ -1,4 +1,3 @@
-// Quick local test harness for parseRegistrationJson
 import parseRegistrationJson from './registrationParser.js';
 
 const sample = [

@@ -29,7 +29,6 @@ const CalendarList = ({ token: tokenProp } = {}) => {
       setNewCalendarName('');
       await reload();
     } catch (e) {
-      // error surfaced above
     }
   };
 

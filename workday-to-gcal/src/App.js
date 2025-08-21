@@ -4,6 +4,7 @@ import Upload from './pages/Home/Upload';
 import Login from './pages/Home/Login';
 import Footer from './layouts/Footer';
 import CalendarList from './pages/Home/CalendarList';
+import Create from './pages/Home/Create';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Login />
         <CalendarList />
         <Upload />
+        <Create />
       </div>
       <Footer />
     </>

@@ -2,8 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { listCalendars as apiListCalendars } from '../utils/api';
 import { sortCalendars } from '../utils/calendarHelpers';
 
-// Hook to fetch and manage user's calendar list
-// Exposes: calendars, loading, error, reload
 const useCalendars = ({ apiKey, discoveryDocs, token } = {}) => {
   const [calendars, setCalendars] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -39,7 +37,6 @@ const useCalendars = ({ apiKey, discoveryDocs, token } = {}) => {
 
   useEffect(() => {
     if (token) {
-      // load via gapi if ready, otherwise REST fallback inside load
       load();
     }
   }, [load, token]);
