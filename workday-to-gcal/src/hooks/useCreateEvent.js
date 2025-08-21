@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { createEvent as apiCreateEvent } from '../utils/api';
+import { buildEventResource } from '../data/eventBuilder';
 
 // Hook to create a new event in a calendar
 // Usage: const { createEvent, creating, error, created } = useCreateEvent({ token })
@@ -8,23 +9,26 @@ const useCreateEvent = ({ token } = {}) => {
   const [error, setError] = useState(null);
   const [created, setCreated] = useState(null);
 
-  const createEvent = useCallback(async (calendarId, eventBody) => {
+  const createEvent = useCallback(async (calendarId, bodyOrOptions) => {
     setCreating(true);
     setError(null);
     setCreated(null);
     try {
       if (!token) throw new Error('token required to create event');
       const accessToken = token.access_token || token;
+      const eventResource = (bodyOrOptions && (bodyOrOptions.summary || bodyOrOptions.start || bodyOrOptions.end || bodyOrOptions.recurrence))
+        ? bodyOrOptions
+        : buildEventResource(bodyOrOptions);
 
       if (window.gapi && window.gapi.client && window.gapi.client.calendar) {
         try { window.gapi.client.setToken({ access_token: accessToken }); } catch {}
-        const res = await window.gapi.client.calendar.events.insert({ calendarId, resource: eventBody });
+        const res = await window.gapi.client.calendar.events.insert({ calendarId, resource: eventResource });
         const resource = res.result || res;
         setCreated(resource);
         return resource;
       }
 
-      const resource = await apiCreateEvent(calendarId, accessToken, eventBody);
+      const resource = await apiCreateEvent(calendarId, accessToken, eventResource);
       setCreated(resource);
       return resource;
     } catch (e) {
