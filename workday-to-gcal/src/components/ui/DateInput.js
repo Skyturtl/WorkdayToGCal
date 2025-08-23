@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DateInput = ({ value = '', onChange, style = {}, ...props }) => {
-  const base = { padding: 6, borderRadius: 4, border: '1px solid #ddd' };
+  const base = { padding: 6, borderRadius: 4, border: '1px solid #ddd', width: '120px' };
   return (
     <input
       type="date"

@@ -9,19 +9,42 @@ section{
 }
 
 .main-content{
+  margin-top: 100px;
   max-width: 800px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step-icon {
+  color: #e6345a;
+  font-size: 1.25rem;
+  margin-right: 8px;
+}
+
+.upload-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload-steps {
+  margin-top: -40px;
 }
 
 /* Navbar styles */
 .navbar {
-  max-width: 800px;
-  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 800px;
+  z-index: 1000;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #f2f2f2;
   padding: 1.2rem 1.5rem;
+  background: #fff;
 }
 
 .navbar-logo {
@@ -75,4 +98,144 @@ section{
   display: grid;
   grid-template-columns: 4fr 1fr;
   gap: 1rem;
+}
+
+/* Create Section */
+.upload {
+  gap: 12px;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.upload-content {
+  flex: 1 1 auto;
+}
+
+.upload-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.upload-title {
+  max-width: 600px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.upload-title-input {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 2px 6px;
+  margin-left: 2px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  width: auto;
+  max-width: 800px;
+  box-sizing: content-box;
+  height: 39px;
+}
+
+.upload-actions {
+  display: flex;
+  gap: 8px;
+  width: 120px;
+  flex-shrink: 0;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.upload-days {
+  display: flex;
+}
+
+.upload-time-range {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.upload-dates-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  align-items: start;
+  padding-top: 8px;
+}
+
+.upload-dates-col {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 12px;
+  align-items: center;
+}
+
+.upload-dates-col .upload-label {
+  grid-column: 1 / 2;
+}
+
+.upload-dates-col input,
+.upload-dates-col .react-datepicker-wrapper,
+.upload-dates-col .time-input {
+  grid-column: 2 / 3;
+}
+
+.upload-dates {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.upload-dates-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.upload-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upload-body > button {
+  transition: all 0.2s ease-in-out;
+  width: 100px;
+}
+
+.upload-label {
+  color: #333;
+  width: 80px;
+}
+
+.upload-validation .upload-warning {
+  white-space: normal;
+  margin: 8px  0;
+  transition: all 0.2s ease-in-out;
+}
+
+.upload-warning {
+  color: #b71c1c;
+  font-size: 0.875rem;
+}
+
+/* Footer Section */
+
+.footer {
+  padding: 1.5rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.error-text {
+  color: #b71c1c;
+  font-size: 12px;
+  margin-top: 6px;
 }

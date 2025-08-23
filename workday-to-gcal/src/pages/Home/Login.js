@@ -34,6 +34,12 @@ const Login = () => {
     try { googleLogout(); } catch {}
     setIsLoggedIn(false);
     clearToken();
+    try {
+      localStorage.removeItem('selectedCalendarId');
+      localStorage.setItem('calendarSelected', 'false');
+      window.dispatchEvent(new CustomEvent('selectedCalendarIdChanged', { detail: '' }));
+      window.dispatchEvent(new CustomEvent('calendarSelectedChanged', { detail: false }));
+    } catch (e) {}
   };
 
   return (

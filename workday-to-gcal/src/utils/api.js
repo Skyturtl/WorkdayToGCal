@@ -74,3 +74,21 @@ export async function createEvent(calendarId, accessToken, body) {
   }
   return res.json();
 }
+
+// Delete an event (including a recurring master) by id
+export async function deleteEvent(calendarId, accessToken, eventId) {
+  if (!accessToken) throw new Error('Access token required');
+  if (!calendarId) throw new Error('calendarId required');
+  if (!eventId) throw new Error('eventId required');
+  const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events/${encodeURIComponent(eventId)}`;
+  const res = await fetch(url, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  if (res.status === 204) return { success: true };
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || res.statusText || 'Failed to delete event');
+  }
+  return { success: true };
+}

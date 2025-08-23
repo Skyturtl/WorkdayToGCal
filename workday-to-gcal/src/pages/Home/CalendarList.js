@@ -43,7 +43,13 @@ const CalendarList = ({ token: tokenProp } = {}) => {
       {ready && token && (
         <div className='calendar-list'>
           <div className="grid calendar-dropdown">
-            <CalendarDropdown items={calendars} selectedId={selected} onChange={setSelected} />
+            <CalendarDropdown items={calendars} selectedId={selected} onChange={(v) => {
+              setSelected(v);
+              const selectedFlag = Boolean(v && v !== '');
+              console.log(selectedFlag);
+              try { localStorage.setItem('calendarSelected', selectedFlag ? 'true' : 'false'); } catch (e) {}
+              try { window.dispatchEvent(new CustomEvent('calendarSelectedChanged', { detail: selectedFlag })); } catch (e) {}
+            }} />
             <Button onClick={reload} variant='outline'>Refresh</Button>
           </div>
           <div className="grid calendar-create">

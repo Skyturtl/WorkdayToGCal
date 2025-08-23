@@ -14,8 +14,10 @@ const Button = ({ onClick, disabled = false, children, variant = 'primary', styl
   };
 
   const variants = {
-    primary: { background: '#e91e63', color: '#fff' },
+    primary: { background: '#e91e63', color: '#fff', border: '1px solid #b0003a' },
     outline: { background: '#fff', color: '#333', border: '1px solid #ccc' },
+    success: { background: '#00c917', color: '#fff', border: '1px solid #008f12' },
+    danger: { background: '#a4001d', color: '#fff', border: '1px solid #750015' },
   };
 
   return (
