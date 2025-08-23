@@ -24,37 +24,12 @@ try {
   if (!link.parentNode) document.head.appendChild(link);
 } catch (e) { /* ignore */ }
 
-if (!clientId) {
-  // Provide a clear runtime message in development / misconfigured prod build.
-  // (In production GitHub Pages, this means the env var was not injected at build time.)
-  // eslint-disable-next-line no-console
-  console.error('Missing REACT_APP_GOOGLE_CLIENT_ID env variable. Google login disabled.');
-}
-
-const AppRoot = clientId ? (
+const AppRoot = (
   <GoogleOAuthProvider clientId={clientId}>
     <AuthProvider>
       <App />
     </AuthProvider>
   </GoogleOAuthProvider>
-) : (
-  <div style={{
-    fontFamily: 'system-ui, sans-serif',
-    padding: '2rem',
-    maxWidth: 640,
-    margin: '3rem auto',
-    lineHeight: 1.5,
-    color: '#333'
-  }}>
-    <h1 style={{ marginTop: 0 }}>Configuration Required</h1>
-    <p>The application is missing the <code>REACT_APP_GOOGLE_CLIENT_ID</code>. Google Sign-In has been disabled.</p>
-    <ol style={{ paddingLeft: '1.2rem' }}>
-      <li>Create a <code>.env</code> file at the project root.</li>
-      <li>Add: <code>REACT_APP_GOOGLE_CLIENT_ID=&lt;your-client-id.apps.googleusercontent.com&gt;</code></li>
-      <li>Rebuild / redeploy: <code>npm run build</code> then your deploy script.</li>
-    </ol>
-    <p style={{ fontSize: '0.9em', color: '#666' }}>The client ID is public; do not include any client secret in frontend code.</p>
-  </div>
 );
 
 root.render(<React.StrictMode>{AppRoot}</React.StrictMode>);
