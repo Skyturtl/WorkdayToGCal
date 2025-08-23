@@ -292,7 +292,6 @@ const Create = () => {
         title="Workday Instructions"
         src="https://www.youtube.com/embed/VpqEzgCRgM8"
         style={{ width: '80%', height: '400px', border: 'none', margin: '12px 0', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />
       <div style={{ margin: '12px 0' }}>
