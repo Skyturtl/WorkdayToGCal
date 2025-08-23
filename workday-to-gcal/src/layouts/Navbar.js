@@ -12,7 +12,7 @@ const Navbar = ({ isPrivacy }) => {
             <li><a href="#calendars">Calendars</a></li>
           </>
         )}
-        <li><a href={isPrivacy ? '#/' : '#/privacy'}>{isPrivacy ? 'Back' : 'Privacy'}</a></li>
+          <li><a href={(process.env.PUBLIC_URL || '') + '/privacy.html'}>Privacy</a></li>
       </ul>
     </nav>
   );
