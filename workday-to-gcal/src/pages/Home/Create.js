@@ -13,6 +13,7 @@ import useCalendars from '../../hooks/useCalendars';
 import useCreateEvent from '../../hooks/useCreateEvent';
 import useDeleteEvent from '../../hooks/useDeleteEvent';
 import { useAuth } from '../../contexts/AuthContext';
+import { trackFileImported, trackEventCreated } from '../../utils/analytics';
 
 const DAYS = ['M','T','W','Th','F','Sa','Su'];
 
@@ -179,7 +180,7 @@ const Create = () => {
   const onFileChange = (files) => {
     if (!canUpload) return;
     if (!files || files.length === 0) return;
-    parseXlsxFileToJson(files[0])
+  parseXlsxFileToJson(files[0])
       .then((json) => {
         const regs = parseRegistrationJson(json);
         const rows = regs.map(r => ({
@@ -191,8 +192,9 @@ const Create = () => {
           startDate: r.startDate || '',
           endDate: r.endDate || ''
         }));
-  setClasses(rows);
-  setStatuses(rows.map(() => 'idle'));
+    setClasses(rows);
+    setStatuses(rows.map(() => 'idle'));
+    try { trackFileImported(); } catch (e) { /* ignore */ }
       })
       .catch((err) => console.error('Failed to parse file', err));
   };
@@ -215,9 +217,10 @@ const Create = () => {
         startTime: cls.startTime,
         endTime: cls.endTime,
       });
-      if (created && created.id) {
+  if (created && created.id) {
         setClasses(prev => prev.map((c,i)=> i===idx ? { ...c, eventId: created.id, htmlLink: created.htmlLink } : c));
       }
+  try { trackEventCreated(); } catch (e) { /* ignore */ }
       setStatuses(s => s.map((st,i)=> i===idx? 'added': st));
     } catch (e) {
       console.error('Failed to create event', e);

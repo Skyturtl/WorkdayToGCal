@@ -1,43 +1,51 @@
 import React from 'react';
 
-// Simple privacy policy section. Adjust GitHub repo URL if it changes.
+// Updated privacy policy reflecting current lightweight analytics implementation.
 const PrivacyPolicy = () => {
   return (
     <section id="privacy" className="privacy-policy">
       <h1>Privacy Policy</h1>
-      <h2>TL;DR</h2>
-      <p> I do not collect any information about your calendars, the events on your calendars, or your class schedule. The only information I (plan to) collect is anonymized basic usage information via Google Analytics (not yet enabled).</p>
-      <h2>No calendar data collected</h2>
+      <p style={{ fontStyle: 'italic', marginTop: -4 }}>Last updated: {new Date().toISOString().split('T')[0]}</p>
+
+      <h2>Summary</h2>
       <p>
-        All reading and exporting of your class schedule happens entirely in your web browser, on your computer. This site does <strong>NOT</strong> read or store events from Google Calendar; it only sends (creates) the class schedule events you choose to upload. Permission scopes that include read access are bundled by Google with the scope required to add events &mdash; the site does not otherwise use them.
-      </p>
-      <p>
-        For proof, you can review the full source code here: {' '}
-        <a href="https://github.com/Skyturtl/WorkdayToGCal" target="_blank" rel="noopener noreferrer">https://github.com/Skyturtl/WorkdayToGCal</a>.
+        This site does <strong>not</strong> collect or store your calendar contents, class schedule details, event titles, locations, times, or any personal identifiers. All schedule parsing happens locally in your browser; only the Google Calendar <em>create</em> calls you initiate are sent to Google. Read‑access scopes bundled by Google are not used.
       </p>
 
-      <h2>Google Analytics (planned)</h2>
+      <h2>Open Source Transparency</h2>
       <p>
-        I intend to add Google Analytics to gather <em>anonymized</em> usage statistics only. It will set a browser cookie and collect high-level, aggregate data. Until it is actually integrated, no analytics data are being collected.
+        You can inspect every line of code here: {' '}
+        <a href="https://github.com/Skyturtl/WorkdayToGCal" target="_blank" rel="noopener noreferrer">https://github.com/Skyturtl/WorkdayToGCal</a>. Feel free to audit or contribute.
       </p>
-      <p>The anonymized data points that may be collected once enabled:</p>
+
+      <h2>Anonymous Analytics</h2>
+      <p>
+        Google Analytics (GA4) is integrated <strong>only</strong> to understand high‑level usage and improve reliability. It is configured with IP anonymization and never receives calendar data or class details.
+      </p>
+      <p>Data points sent:</p>
       <ul>
-        <li>Basic usage stats (e.g. session duration, browser version).</li>
-        <li>Whether a class / schedule file was imported (yes / no only).</li>
-        <li>The count of events successfully added to a calendar.</li>
+        <li>Session duration (seconds).</li>
+        <li>Browser user agent string (helps prioritize compatibility).</li>
+        <li>A counter of how many schedule files were imported (no file content).</li>
+        <li>A counter of how many events were successfully created (no event metadata).</li>
       </ul>
       <p>
-        This helps me understand if people are finding the tool useful, diagnose parsing issues early, and decide future improvements.
+        A single <code>session_summary</code> event (with the counters & duration) fires when you leave or hide the tab; individual <code>file_imported</code> and <code>event_created</code> events fire at those actions. No unique user identifier beyond GA’s anonymous session cookie is used.
       </p>
 
-      <h2>User control</h2>
+      <h2>Cookies</h2>
       <p>
-        When analytics is added you will be able to opt out using browser privacy features or Google’s official opt‑out extension. Links will be listed here at that time.
+        GA4 sets a cookie to distinguish anonymous sessions. You can block or clear this with standard browser privacy settings if you prefer.
+      </p>
+
+      <h2>User Control & Opt‑Out</h2>
+      <p>
+        You can opt out by: (1) using a browser tracking protection / ad‑blocker, (2) clearing or blocking cookies for this site, or (3) installing Google’s official opt‑out add‑on. The app continues to function fully without analytics.
       </p>
 
       <h2>Questions</h2>
       <p>
-        If you have questions or concerns, please open an issue on the GitHub repository above.
+        Open an issue on the GitHub repository if you have any concerns or suggestions.
       </p>
     </section>
   );

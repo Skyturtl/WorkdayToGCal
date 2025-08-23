@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import GClown from './assets/GClown.png';
 import reportWebVitals from './reportWebVitals';
+import { initAnalytics } from './utils/analytics';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -23,6 +24,9 @@ try {
   link.href = GClown;
   if (!link.parentNode) document.head.appendChild(link);
 } catch (e) { /* ignore */ }
+
+// Initialize analytics (no‑op if env var missing)
+try { initAnalytics(process.env.REACT_APP_GA_MEASUREMENT_ID); } catch (e) { /* ignore */ }
 
 const AppRoot = (
   <GoogleOAuthProvider clientId={clientId}>
