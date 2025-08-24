@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/WorkdayToGCal/static/css/main.44ea4ca3.css",
-    "main.js": "/WorkdayToGCal/static/js/main.62597f19.js",
+    "main.js": "/WorkdayToGCal/static/js/main.df7fffd9.js",
     "static/js/453.d6e5da07.chunk.js": "/WorkdayToGCal/static/js/453.d6e5da07.chunk.js",
     "static/media/GClown.png": "/WorkdayToGCal/static/media/GClown.921fd50e94e82aaff88b.png",
     "index.html": "/WorkdayToGCal/index.html",
     "main.44ea4ca3.css.map": "/WorkdayToGCal/static/css/main.44ea4ca3.css.map",
-    "main.62597f19.js.map": "/WorkdayToGCal/static/js/main.62597f19.js.map",
+    "main.df7fffd9.js.map": "/WorkdayToGCal/static/js/main.df7fffd9.js.map",
     "453.d6e5da07.chunk.js.map": "/WorkdayToGCal/static/js/453.d6e5da07.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.44ea4ca3.css",
-    "static/js/main.62597f19.js"
+    "static/js/main.df7fffd9.js"
   ]
 }
