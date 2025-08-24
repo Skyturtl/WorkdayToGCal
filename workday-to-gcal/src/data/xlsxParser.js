@@ -10,8 +10,20 @@ export function parseXlsxFileToJson(file) {
         const workbook = xlsx.read(data, { type: 'array' });
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
-        const json = xlsx.utils.sheet_to_json(worksheet, { range: "A6:P30" });
-        resolve(json);
+        const firstRow = xlsx.utils.sheet_to_json(worksheet, { header: 1 })[0][0];
+        let json;
+        if (firstRow === "View My Courses") {
+          json = xlsx.utils.sheet_to_json(worksheet, { range: "A6:P30"});
+          resolve(json);
+        }
+        else if (firstRow === "My Enrolled Courses") {
+          json = xlsx.utils.sheet_to_json(worksheet, { range: "A3:P30"});
+          resolve(json);
+        } 
+        else {
+          json = xlsx.utils.sheet_to_json(worksheet, { range: "A6:P30"});
+          resolve(json);
+        }
       } catch (err) {
         reject(err);
       }
