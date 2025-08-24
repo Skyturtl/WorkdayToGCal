@@ -156,6 +156,7 @@ const Create = () => {
   const [classes, setClasses] = useState([]);
   const [statuses, setStatuses] = useState([]); // parallel array of 'idle' | 'creating' | 'added'
   const [bulkUploading, setBulkUploading] = useState(false);
+  const [uploaded, setUploaded] = useState(false);
 
   const { token } = useAuth();
   const { calendars = [], loading: loadingCalendars } = useCalendars({ token });
@@ -180,6 +181,7 @@ const Create = () => {
   const onFileChange = (files) => {
     if (!canUpload) return;
     if (!files || files.length === 0) return;
+    setUploaded(false); // Reset uploaded state
   parseXlsxFileToJson(files[0])
       .then((json) => {
         const regs = parseRegistrationJson(json);
@@ -194,9 +196,13 @@ const Create = () => {
         }));
     setClasses(rows);
     setStatuses(rows.map(() => 'idle'));
+    setUploaded(true); // Set uploaded to true after successful processing
     try { trackFileImported(); } catch (e) { /* ignore */ }
       })
-      .catch((err) => console.error('Failed to parse file', err));
+      .catch((err) => {
+        console.error('Failed to parse file', err);
+        setUploaded(false); // Reset uploaded state on error
+      });
   };
 
   const updateClass = (idx, next) => {
@@ -280,6 +286,16 @@ const Create = () => {
           <label style={{ display: 'block', marginBottom: 6, color: '#555' }}>Upload Workday Excel File</label>
           <FileUpload onChange={onFileChange} disabled={!canUpload} />
           {loadingCalendars && <div className='loading-text' >Loading calendars...</div>}
+          {uploaded && (
+            <div className='success-text'>
+              <h2 style={{ fontSize: '1.5em', margin: '12px 0 4px 0', color: '#00c917' }}>
+                File uploaded successfully!
+              </h2>
+              <p style={{ margin: "0 0 12px 0", fontSize: '1em' }}>
+                Scroll down to see your classes
+              </p>
+            </div>
+          )}
           {!canUpload && (
             <div className='error-text'>No calendars available — create or select a calendar first.</div>
           )}
@@ -297,11 +313,11 @@ const Create = () => {
         style={{ width: '80%', height: '400px', border: 'none', margin: '12px 0', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
         allowFullScreen
       />
-      <div style={{ margin: '12px 0' }}>
+      <div style={{ margin: '32px 0 12px 0' }}>
         <Button
           onClick={handleBulkUpload}
           disabled={bulkUploading || !statuses.some(s => s === 'idle')}
-          variant="outline"
+          variant="primary"
           title="Create events for all rows not yet added"
         >
           {bulkUploading ? 'Uploading Remaining...' : 'Upload All Remaining'}
